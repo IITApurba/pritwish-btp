@@ -15,7 +15,7 @@ RNP proteins (PB1, PB2, PA, NP) or the human interactome (DDX3X). Keep it simple
 - `app.py` — Flask routes: `/`, `/api/lookup`, `/api/suggest`, `/analysis`.
 - `analysis.py` — counts, overlap heatmap, Jaccard dendrogram, small logistic-regression/decision-tree experiment.
 - `templates/`, `static/` — front end (plain HTML/CSS/JS, no build step).
-- `plan.md` — project plan; `README.md` — user-facing docs.
+- `plan.md` — project plan; `solution.md` — explanation of the current solution; `README.md` — user-facing docs.
 
 ## Data notes
 - Only the first sheet of each RNP workbook is used (unique partner lists). DDX3X file uses sheet `Integrated`.

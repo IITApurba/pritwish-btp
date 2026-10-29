@@ -45,6 +45,7 @@ templates/        HTML pages (search, analysis)
 static/           CSS, JS, generated plots
 results/          analysis_summary.json, protein_membership_table.csv
 plan.md           project plan and findings
+solution.md       how the current solution works
 CLAUDE.md         notes for Claude Code
 ```
 
