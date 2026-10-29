@@ -13,7 +13,18 @@ influenza A RNP proteins (**PB1, PB2, PA, NP**) and/or the **human interactome**
 
 You can type a gene symbol (`KPNA2`), a UniProt ID (`O43707`) or the full protein name; matching is case-insensitive.
 
-## Setup
+## Quick start (Python 3 required)
+Download or clone the project, then use the scripts for your system. Run setup once, then run whenever you want to start the app.
+
+| | Setup (once) | Run |
+|---|---|---|
+| **Windows** | double-click `windows\setup.bat` | double-click `windows\run.bat` |
+| **macOS** | double-click `macos/setup.command` | double-click `macos/run.command` |
+
+The run script starts the app and opens http://127.0.0.1:5001 in your browser. Press `Ctrl+C` in the window to stop it.
+On macOS, if double-clicking is blocked, right-click the file → Open, or run `bash macos/setup.command` in Terminal.
+
+## Manual setup
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate          # Windows: .venv\Scripts\activate
@@ -28,6 +39,8 @@ Keep the five `.xlsx` files in the project folder.
 app.py            Flask routes
 data_loader.py    reads the Excel files, builds the lookup, formats the answer
 analysis.py       data analysis + small ML experiment
+windows/          setup.bat, run.bat
+macos/            setup.command, run.command
 templates/        HTML pages (search, analysis)
 static/           CSS, JS, generated plots
 results/          analysis_summary.json, protein_membership_table.csv

@@ -8,6 +8,8 @@ RNP proteins (PB1, PB2, PA, NP) or the human interactome (DDX3X). Keep it simple
 - Run app: `.venv/bin/python app.py` → http://127.0.0.1:5001 (port 5000 is taken by macOS AirPlay Receiver)
 - Run analysis/ML (regenerates `static/plots/` and `results/`): `.venv/bin/python analysis.py`
 
+- One-click setup/run for end users: `windows/setup.bat` + `windows/run.bat`, `macos/setup.command` + `macos/run.command` (keep `.bat` files CRLF, `.command` files executable)
+
 ## Layout
 - `data_loader.py` — reads the 5 `.xlsx` files in the project root, builds `RECORDS` (gene → RNPs/interactome flag) and `ALIASES` (UniProt ID / protein name → gene); `lookup()` and `format_output()` produce the answer.
 - `app.py` — Flask routes: `/`, `/api/lookup`, `/api/suggest`, `/analysis`.
