@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<p class="lead">
+  Type a human protein (gene symbol, UniProt ID or protein name) to see whether it interacts with the
+  influenza A RNP proteins ({{ rnps | join(", ") }}) or with the human interactome ({{ interactome }}).
+</p>
+
+<form id="search-form" autocomplete="off">
+  <input id="protein" name="protein" list="suggestions" placeholder="e.g. KPNA2, DDX3X, O43707" autofocus>
+  <datalist id="suggestions"></datalist>
+  <button type="submit">Check</button>
+</form>
+
+<p class="examples">Try:
+  <a href="#" class="example">KPNA2</a>
+  <a href="#" class="example">DDX3X</a>
+  <a href="#" class="example">NCL</a>
+  <a href="#" class="example">FBL</a>
+  <a href="#" class="example">XYZ123</a>
+</p>
+
+<section id="result" hidden>
+  <h2 id="result-title"></h2>
+  <p id="result-sub" class="muted"></p>
+  <div id="badges"></div>
+  <p id="result-text" class="result-text"></p>
+</section>
+
+<p class="muted small">{{ total }} unique human proteins are indexed across the five datasets.</p>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+{% endblock %}

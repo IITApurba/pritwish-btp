@@ -1,0 +1,69 @@
+:root {
+  --bg: #fcfcfb;
+  --card: #ffffff;
+  --ink: #0b0b0b;
+  --muted: #52514e;
+  --line: #deddd8;
+  --accent: #2a78d6;
+  --bad: #b3261e;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1a1a19;
+    --card: #232322;
+    --ink: #f0efec;
+    --muted: #c3c2b7;
+    --line: #3a3a38;
+    --accent: #3987e5;
+    --bad: #e66767;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+header, main, footer { max-width: 880px; margin: 0 auto; padding: 16px; }
+header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; border-bottom: 1px solid var(--line); }
+h1 { font-size: 1.3rem; margin: 0; }
+nav a { margin-left: 16px; color: var(--accent); text-decoration: none; }
+nav a:hover { text-decoration: underline; }
+.lead { color: var(--muted); }
+.muted { color: var(--muted); }
+.small { font-size: 0.85rem; }
+footer { color: var(--muted); font-size: 0.8rem; }
+
+form { display: flex; gap: 8px; margin: 16px 0 8px; }
+input {
+  flex: 1; padding: 10px 12px; font-size: 1rem; border: 1px solid var(--line);
+  border-radius: 8px; background: var(--card); color: var(--ink);
+}
+button {
+  padding: 10px 20px; font-size: 1rem; border: 0; border-radius: 8px;
+  background: var(--accent); color: #fff; cursor: pointer;
+}
+.examples a { margin-right: 10px; color: var(--accent); }
+
+#result {
+  margin: 24px 0; padding: 16px 20px; background: var(--card);
+  border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 8px;
+}
+#result.notfound { border-left-color: var(--bad); }
+#result h2 { margin: 0; }
+.badge {
+  display: inline-block; margin: 8px 6px 0 0; padding: 3px 12px; border-radius: 999px;
+  color: #fff; font-weight: 600; font-size: 0.9rem;
+}
+.result-text { font-size: 1.1rem; font-weight: 600; margin: 12px 0 0; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+figure { margin: 0; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+figure.wide { grid-column: 1 / -1; overflow-x: auto; }
+figure.wide img { min-width: 560px; }  /* keep the dendrogram readable on phones; the card scrolls sideways */
+img { width: 100%; height: auto; }
+table { border-collapse: collapse; width: 100%; background: var(--card); }
+th, td { border: 1px solid var(--line); padding: 6px 10px; text-align: center; }
+th:first-child, td:first-child { text-align: left; }
+code { background: var(--card); padding: 1px 6px; border-radius: 4px; border: 1px solid var(--line); }

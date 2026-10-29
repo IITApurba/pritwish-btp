@@ -1,0 +1,220 @@
+{
+  "total_unique_human_proteins": 1095,
+  "interactors_per_dataset": {
+    "PB1": 20,
+    "PB2": 261,
+    "PA": 30,
+    "NP": 144,
+    "DDX3X": 745
+  },
+  "proteins_by_number_of_rnps": {
+    "0": 698,
+    "1": 365,
+    "2": 11,
+    "3": 16,
+    "4": 5
+  },
+  "jaccard_similarity": {
+    "PB1-PB2": 0.073,
+    "PB1-PA": 0.667,
+    "PB1-NP": 0.031,
+    "PB1-DDX3X": 0.008,
+    "PB2-PA": 0.094,
+    "PB2-NP": 0.033,
+    "PB2-DDX3X": 0.029,
+    "PA-NP": 0.042,
+    "PA-DDX3X": 0.01,
+    "NP-DDX3X": 0.023
+  },
+  "ml_experiment": {
+    "n_proteins": 397,
+    "n_positive": 47,
+    "baseline_accuracy": 0.882,
+    "logistic_regression": {
+      "roc_auc": 0.537
+    },
+    "decision_tree": {
+      "roc_auc": 0.535
+    },
+    "logistic_coefficients": {
+      "PB1": 0.59,
+      "PB2": -0.167,
+      "PA": 0.766,
+      "NP": 0.312
+    }
+  },
+  "overlap_matrix": {
+    "PB1": {
+      "PB1": 20,
+      "PB2": 19,
+      "PA": 20,
+      "NP": 5,
+      "DDX3X": 6
+    },
+    "PB2": {
+      "PB1": 19,
+      "PB2": 261,
+      "PA": 25,
+      "NP": 13,
+      "DDX3X": 28
+    },
+    "PA": {
+      "PB1": 20,
+      "PB2": 25,
+      "PA": 30,
+      "NP": 7,
+      "DDX3X": 8
+    },
+    "NP": {
+      "PB1": 5,
+      "PB2": 13,
+      "PA": 7,
+      "NP": 144,
+      "DDX3X": 20
+    },
+    "DDX3X": {
+      "PB1": 6,
+      "PB2": 28,
+      "PA": 8,
+      "NP": 20,
+      "DDX3X": 745
+    }
+  },
+  "proteins_binding_3_or_more_rnps": [
+    {
+      "gene": "KPNA1",
+      "PB1": 1,
+      "PB2": 1,
+      "PA": 1,
+      "NP": 1,
+      "DDX3X": 0,
+      "n_rnp": 4
+    },
+    {
+      "gene": "KPNA2",
+      "PB1": 1,
+      "PB2": 1,
+      "PA": 1,
+      "NP": 1,
+      "DDX3X": 0,
+      "n_rnp": 4
+    },
+    {
+      "gene": "KPNA3",
+      "PB1": 1,
+      "PB2": 1,
+      "PA": 1,
+      "NP": 1,
+      "DDX3X": 0,
+      "n_rnp": 4
+    },
+    {
+      "gene": "KPNA6",
+      "PB1": 1,
+      "PB2": 1,
+      "PA": 1,
+      "NP": 1,
+      "DDX3X": 0,
+      "n_rnp": 4
+    },
+    {
+      "gene": "POLR2A",
+      "PB1": 1,
+      "PB2": 1,
+      "PA": 1,
+      "NP": 1,
+      "DDX3X": 0,
+      "n_rnp": 4
+    },
+    {
+      "gene": "DDX3X",
+      "PB1": 1,
+      "PB2": 1,
+      "PA": 1,
+      "NP": 0,
+      "DDX3X": 1,
+      "n_rnp": 3
+    },
+    {
+      "gene": "DDX5",
+      "PB1": 1,
+      "PB2": 1,
+      "PA": 1,
+      "NP": 0,
+      "DDX3X": 1,
+      "n_rnp": 3
+    },
+    {
+      "gene": "EIF4E",
+      "PB1": 1,
+      "PB2": 1,
+      "PA": 1,
+      "NP": 0,
+      "DDX3X": 1,
+      "n_rnp": 3
+    },
+    {
+      "gene": "HNRNPM",
+      "PB1": 1,
+      "PB2": 1,
+      "PA": 1,
+      "NP": 0,
+      "DDX3X": 1,
+      "n_rnp": 3
+    },
+    {
+      "gene": "NXF1",
+      "PB1": 1,
+      "PB2": 1,
+      "PA": 1,
+      "NP": 0,
+      "DDX3X": 1,
+      "n_rnp": 3
+    },
+    {
+      "gene": "PABPC1",
+      "PB1": 1,
+      "PB2": 1,
+      "PA": 1,
+      "NP": 0,
+      "DDX3X": 1,
+      "n_rnp": 3
+    },
+    {
+      "gene": "DDX19A",
+      "PB1": 1,
+      "PB2": 1,
+      "PA": 1,
+      "NP": 0,
+      "DDX3X": 0,
+      "n_rnp": 3
+    },
+    {
+      "gene": "DDX19B",
+      "PB1": 1,
+      "PB2": 1,
+      "PA": 1,
+      "NP": 0,
+      "DDX3X": 0,
+      "n_rnp": 3
+    },
+    {
+      "gene": "KPNA5",
+      "PB1": 1,
+      "PB2": 1,
+      "PA": 1,
+      "NP": 0,
+      "DDX3X": 0,
+      "n_rnp": 3
+    },
+    {
+      "gene": "NUP50",
+      "PB1": 1,
+      "PB2": 1,
+      "PA": 1,
+      "NP": 0,
+      "DDX3X": 0,
+      "n_rnp": 3
+    }
+  ]
+}
