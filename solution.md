@@ -106,3 +106,32 @@ To cover more proteins without guessing, add more **experimentally verified** so
 BioGRID, IntAct, VirHostNet or HPIDB records for influenza A PB1/PB2/PA/NP. They plug into the same loader
 (`RNP_FILES`), and each answer could also show its source. This widens coverage while keeping every answer traceable
 to a published experiment.
+
+## 8. Lookup vs ML: when would ML make sense?
+
+### Lookup does not get harder as the data grows
+The index is a dictionary (hash table), so finding a protein takes about the same time whether there are 1,000
+records or 1 billion. Large biological databases (UniProt, BioGRID, STRING) hold gigabytes to terabytes and still
+answer "is X recorded?" by indexed lookup, not by ML. A big dataset is a storage and engineering issue, not a reason
+to switch to ML.
+
+### What decides the method is the question being asked
+| Question | Right tool | Accuracy |
+|---|---|---|
+| "Is this interaction **already recorded** in our data?" | Lookup | Exact, at any data size |
+| "Will this protein interact with PB2, even though **nobody has tested it**?" | ML (prediction) | Never 100% |
+
+A lookup can only repeat what is in the data. ML is useful for answers **beyond** the data: protein pairs that have
+never been tested. Large data matters there too, but differently: more training data and richer features (sequence,
+structure, GO terms) make a model **more accurate**, never perfect.
+
+### What "100% accurate" means here
+The lookup is 100% **faithful to the datasets**, not 100% correct about biology. If a real interaction is missing
+from the files, the app answers "not interacting". The accurate phrase is "100% faithful to the data".
+
+### Summary
+We use an exact lookup because the question is whether an interaction is recorded in our datasets. A lookup answers
+that exactly, and indexing keeps it fast even for very large datasets. ML would suit a different question:
+predicting interactions that have not been tested experimentally. It can never be 100% accurate, and it needs far
+more training data and richer features than we have. Our ML experiment (ROC-AUC ≈ 0.54, section 5) confirms that
+the current features are not enough for that.

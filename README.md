@@ -13,7 +13,7 @@ influenza A RNP proteins (**PB1, PB2, PA, NP**) and/or the **human interactome**
 
 You can type a gene symbol (`KPNA2`), a UniProt ID (`O43707`) or the full protein name; matching is case-insensitive.
 
-## Quick start (Python 3 required)
+## Quick start (Python 3.9+ required)
 Download or clone the project, then use the scripts for your system. Run setup once, then run whenever you want to start the app.
 
 | | Setup (once) | Run |
@@ -21,8 +21,13 @@ Download or clone the project, then use the scripts for your system. Run setup o
 | **Windows** | double-click `windows\setup.bat` | double-click `windows\run.bat` |
 | **macOS** | double-click `macos/setup.command` | double-click `macos/run.command` |
 
-The run script starts the app and opens http://127.0.0.1:5001 in your browser. Press `Ctrl+C` in the window to stop it.
-On macOS, if double-clicking is blocked, right-click the file → Open, or run `bash macos/setup.command` in Terminal.
+The run script starts the app and opens http://127.0.0.1:5001 in your browser (it runs setup first if needed).
+Press `Ctrl+C` in the window to stop it.
+
+If the system blocks a downloaded script:
+- **macOS** ("cannot be verified"): open System Settings → Privacy & Security → *Open Anyway*, or run
+  `bash macos/setup.command` and `bash macos/run.command` in Terminal from the project folder.
+- **Windows** ("Windows protected your PC"): click *More info* → *Run anyway*.
 
 ## Manual setup
 ```bash
