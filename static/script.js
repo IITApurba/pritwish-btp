@@ -21,9 +21,7 @@ async function check(protein) {
   box.hidden = false;
   box.className = data.found ? "found" : "notfound";
   document.getElementById("result-title").textContent = data.found ? data.gene : data.query || "—";
-  document.getElementById("result-sub").textContent = data.found
-    ? [data.protein_name, data.uniprot.join(", ")].filter(Boolean).join(" · ")
-    : "";
+  document.getElementById("result-sub").textContent = data.found ? data.protein_name || "" : "";
 
   const badges = document.getElementById("badges");
   badges.replaceChildren();
@@ -31,6 +29,10 @@ async function check(protein) {
   data.interactome.forEach((i) => badges.append(badge(i, "Human interactome")));
 
   document.getElementById("result-text").textContent = data.message;
+  // Show the UniProt ID only when the protein interacts with something; otherwise "Not Available".
+  const interacts = data.rnps.length > 0 || data.interactome.length > 0;
+  const ids = interacts && data.uniprot && data.uniprot.length ? data.uniprot.join(", ") : "Not Available";
+  document.getElementById("result-uniprot").textContent = "UNIPROT ID: " + ids;
 }
 
 form.addEventListener("submit", (e) => {

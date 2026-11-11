@@ -11,7 +11,7 @@ RNP proteins (PB1, PB2, PA, NP) or the human interactome (DDX3X). Keep it simple
 - One-click setup/run for end users: `windows/setup.bat` + `windows/run.bat`, `macos/setup.command` + `macos/run.command` (keep `.bat` files CRLF, `.command` files executable)
 
 ## Layout
-- `data_loader.py` — reads the 5 `.xlsx` files in the project root, builds `RECORDS` (gene → RNPs/interactome flag) and `ALIASES` (UniProt ID / protein name → gene); `lookup()` and `format_output()` produce the answer.
+- `data_loader.py` — reads the 6 `.xlsx` files in the project root, builds `RECORDS` (gene → RNPs/interactome flag) and `ALIASES` (UniProt ID / protein name → gene); `lookup()` and `format_output()` produce the answer.
 - `app.py` — Flask routes: `/`, `/api/lookup`, `/api/suggest`, `/analysis`.
 - `analysis.py` — counts, overlap heatmap, Jaccard dendrogram, small logistic-regression/decision-tree experiment.
 - `templates/`, `static/` — front end (plain HTML/CSS/JS, no build step).
@@ -19,9 +19,10 @@ RNP proteins (PB1, PB2, PA, NP) or the human interactome (DDX3X). Keep it simple
 
 ## Data notes
 - Only the first sheet of each RNP workbook is used (unique partner lists). DDX3X file uses sheet `Integrated`.
+- `DDX3X_Interactome_UniProt_IDs.xlsx` (sheet `DDX3X Partners UniProt`) adds UniProt IDs/names for the DDX3X partners; blank ID → shown as "Not Available". TMPO has two IDs separated by `;`.
 - Column names differ per file; the mapping lives in `RNP_FILES` in `data_loader.py`. Add new datasets there.
 - In the NP file the "Human UniProt ID" column sometimes repeats the gene symbol — handled in the loader.
-- Output format: one RNP → `NP`; several → `(PB1, PB2)`; interactome → `(DDX3X)`; none → "No, it is not interacting…".
+- Output format: one RNP → `NP`; several → `(PB1, PB2)`; interactome → `Interacts with DDX3X`; none → "No, it is not interacting with any of RNP components or human proteins." Every result shows `UNIPROT ID: …` (or `Not Available`).
 - Gene symbols are matched case-insensitively. Input matching is exact (no fuzzy match); `/api/suggest` gives prefix autocomplete.
 
 ## Conventions

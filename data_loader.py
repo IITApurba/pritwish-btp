@@ -18,6 +18,10 @@ RNP_FILES = {
 }
 INTERACTOME_FILE = "DDX3X_Human_Interactome_Integrated.xlsx"
 INTERACTOME_NAME = "DDX3X"
+# Same 745 DDX3X partners, with UniProt IDs (blank for non-coding RNA genes).
+INTERACTOME_UNIPROT_FILE = "DDX3X_Interactome_UniProt_IDs.xlsx"
+INTERACTOME_UNIPROT_SHEET = "DDX3X Partners UniProt"
+NOT_INTERACTING = "No, it is not interacting with any of RNP components or human proteins."
 RNP_ORDER = ["PB1", "PB2", "PA", "NP"]
 
 
@@ -79,6 +83,21 @@ def build_index():
     for row in ddx.itertuples(index=False):
         record(row.gene)["interactome"] = True
 
+    # UniProt IDs / protein names for the DDX3X partners (missing ID -> shown as "Not Available").
+    uni = pd.read_excel(DATA_DIR / INTERACTOME_UNIPROT_FILE, sheet_name=INTERACTOME_UNIPROT_SHEET)
+    for gene, name, ids in zip(uni["Human Protein"].map(_clean), uni["Protein Name"].map(_clean),
+                               uni["Human UniProt ID"].map(_clean)):
+        if not gene or gene.upper() not in records:
+            continue
+        rec = records[gene.upper()]
+        if name and not rec["name"]:
+            rec["name"] = name
+        if name:
+            aliases.setdefault(name.upper(), gene.upper())
+        for uid in filter(None, (i.strip() for i in ids.split(";"))):  # e.g. TMPO has "P42166; P42167"
+            rec["uniprot"].add(uid)
+            aliases.setdefault(uid.upper(), gene.upper())
+
     return records, aliases
 
 
@@ -88,7 +107,7 @@ RECORDS, ALIASES = build_index()
 def lookup(query):
     """Classify one protein. Returns a dict the API/front end can show directly."""
     q = query.strip()
-    result = {"query": q, "found": False, "rnps": [], "interactome": [], "message": ""}
+    result = {"query": q, "found": False, "rnps": [], "interactome": [], "uniprot": [], "message": ""}
     if not q:
         result["message"] = "Please enter a protein name."
         return result
@@ -99,7 +118,7 @@ def lookup(query):
 
     gene_key = ALIASES.get(q.upper())
     if gene_key is None:
-        result["message"] = "No, it is not interacting with any of PB1, PB2, PA, NP or the human interactome."
+        result["message"] = NOT_INTERACTING
         return result
 
     rec = RECORDS[gene_key]
@@ -117,16 +136,16 @@ def lookup(query):
 
 
 def format_output(rnps, interactome):
-    """One RNP -> 'NP'. Several -> '(PB1, PB2)'. Human interactome is always in brackets."""
+    """One RNP -> 'NP'. Several -> '(PB1, PB2)'. Human interactome -> 'Interacts with DDX3X'."""
     if not rnps and not interactome:
-        return "No, it is not interacting with any of PB1, PB2, PA, NP or the human interactome."
+        return NOT_INTERACTING
     parts = []
     if len(rnps) == 1:
         parts.append(f"RNP: {rnps[0]}")
     elif len(rnps) > 1:
         parts.append(f"RNP: ({', '.join(rnps)})")
     if interactome:
-        parts.append(f"Human interactome: ({', '.join(interactome)})")
+        parts.append(f"Interacts with {', '.join(interactome)}")
     return " | ".join(parts)
 
 

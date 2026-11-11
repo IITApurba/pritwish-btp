@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% block title %}Influenza A Interaction Checker{% endblock %}</title>
+  <title>{% block title %}DDX3X Influenza A - RNP Interactome Finder{% endblock %}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
   <header>
-    <h1>Influenza A – Protein Interaction Checker</h1>
+    <h1>DDX3X Influenza A - RNP Interactome Finder</h1>
     <nav>
       <a href="{{ url_for('index') }}">Search</a>
       <a href="{{ url_for('analysis') }}">Data analysis</a>
     </nav>
   </header>
   <main>{% block content %}{% endblock %}</main>
-  <footer>College project · data: IntAct / BioGRID / UniProt exports provided with the assignment</footer>
+  <footer>Based on IntAct/BioGrid/UniProt Database</footer>
 </body>
 </html>

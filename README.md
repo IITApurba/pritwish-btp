@@ -1,4 +1,4 @@
-# Influenza A – Protein Interaction Checker
+# DDX3X Influenza A - RNP Interactome Finder
 
 A small web app for a college assignment. Enter a **human protein** and it tells you whether it interacts with the
 influenza A RNP proteins (**PB1, PB2, PA, NP**) and/or the **human interactome** (DDX3X dataset).
@@ -8,10 +8,12 @@ influenza A RNP proteins (**PB1, PB2, PA, NP**) and/or the **human interactome**
 |---|---|
 | `FBL` | `RNP: NP` |
 | `KPNA2` | `RNP: (PB1, PB2, PA, NP)` |
-| `NCL` | `RNP: PB2 \| Human interactome: (DDX3X)` |
-| `XYZ123` | `No, it is not interacting with any of PB1, PB2, PA, NP or the human interactome.` |
+| `NCL` | `RNP: PB2 \| Interacts with DDX3X` |
+| `XYZ123` | `No, it is not interacting with any of RNP components or human proteins.` |
 
 You can type a gene symbol (`KPNA2`), a UniProt ID (`O43707`) or the full protein name; matching is case-insensitive.
+Every result also shows a `UNIPROT ID:` line — `Not Available` when the protein is not found or has no UniProt entry
+(e.g. non-coding RNA genes in the DDX3X list).
 
 ## Quick start (Python 3.9+ required)
 Download or clone the project, then use the scripts for your system. Run setup once, then run whenever you want to start the app.
@@ -37,7 +39,7 @@ pip install -r requirements.txt
 python analysis.py                 # creates the plots + results (optional, needed for the Data analysis page)
 python app.py                      # open http://127.0.0.1:5001
 ```
-Keep the five `.xlsx` files in the project folder.
+Keep the six `.xlsx` files in the project folder.
 
 ## Project structure
 ```

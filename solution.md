@@ -17,6 +17,7 @@ provided for the project. Every answer is a direct fact from one of these files:
 | PA interactors | `PA_human_interactions_unique_list_15-58.xlsx` | 30 |
 | NP interactors | `NP_Human_Interactions_Unique_List.xlsx` | 144 |
 | DDX3X human interactome | `DDX3X_Human_Interactome_Integrated.xlsx` (BioGRID + IntAct + UniProt) | 745 |
+| DDX3X partner UniProt IDs | `DDX3X_Interactome_UniProt_IDs.xlsx` (sheet `DDX3X Partners UniProt`; same 745 partners, 75 without an ID) | 745 |
 
 In total: **1,095 unique human proteins**.
 
@@ -58,9 +59,12 @@ errors. ML is used separately, as an analysis experiment (see section 5), and ne
 |---|---|
 | One RNP | `RNP: NP` |
 | Several RNPs | `RNP: (PB1, PB2, PA, NP)` |
-| Human interactome | `Human interactome: (DDX3X)` |
-| Both | `RNP: PB2 \| Human interactome: (DDX3X)` |
-| Not found | `No, it is not interacting with any of PB1, PB2, PA, NP or the human interactome.` |
+| Human interactome | `Interacts with DDX3X` |
+| Both | `RNP: PB2 \| Interacts with DDX3X` |
+| Not found | `No, it is not interacting with any of RNP components or human proteins.` |
+
+The page also prints `UNIPROT ID: <id>` under every answer, or `UNIPROT ID: Not Available` when the protein is
+not found or has no UniProt ID.
 
 ### Step 5 — Web interface (`app.py`, `templates/`, `static/`)
 - `/` — search page with a text box.
